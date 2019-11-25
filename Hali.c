@@ -1,5 +1,5 @@
 #define SIZE 6
-int A[SIZE] = {1,2,3, 10,20,30};  // kind of A cards 1~3 , 10~30 
+int A[SIZE] = {1,2,3, 10,20,30};  //  1~3 가 빨간색카드   , 10~30 가 파란색 카드(1~3이나마찬가지 보기쉽게 10으로함)  합이 4, 40 가 나와야함  
 int F[2];  // output
 int pressed_in1=0;  //player1 btn press
 int pressed_in2=0;  //plater2 btn press
@@ -15,15 +15,17 @@ int buzzer=0;  	//buzzer
 int fnd 				//fnd 처음에 0 , 0 으로 초기화  맨왼쪽이 (6'b100000)player1  맨오른쪽은 (6'b000001) player2 숫자 반대로보여야함
 
 
+//   총 버튼 4개 , 스타트버튼이랑 리셋버튼은 양쪽에 하나씩  fnd로 2명다 점수알수있고 txt_lcd에는 게임이기면 이긴선수나오게 
+// color_led에는 맞는카드에 버튼을 누르면 초록색 아니면 빨간색
+
 
 int main(void)
 {
 int i;
 
-
 while(1){
 printf ("%s" , box); 			//pressed_btn 위치에  항상 출력 
-SIZE=rand()%10;  			// cardNum random
+SIZE=rand()%6;  			// cardNum random
 i=rand()%(2000)+1000;  //delay random(1~3sec)
 
 if (start ==0 && pressed_btn==1)

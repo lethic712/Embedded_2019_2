@@ -23,7 +23,7 @@ int main(int argc , char **argv)
 {
 	unsigned int data = 0;
 	int i;
-	int temp = 0,temp2 = 0;
+	int quo = 0,rem = 0;
 	int array[8] = {0,0,0,0,0,0,0,0,};
 	int count = 0;
 	
@@ -40,20 +40,20 @@ int main(int argc , char **argv)
 	// open driver
 	ledLibInit();
 	
-	temp = data;
-	temp2 = data;
+	quo = data;
+	rem = data;
 	
 	
 	do {
-		if((temp == 1) ||  (temp == 0))
+		if((quo == 1) ||  (quo == 0))
 		break;
-		temp = temp / 2;
+		quo = quo / 2;
 		count ++;
 	}while(1);
 	
 	for(i = 0; i <= count; i++){
-		array [i] = temp2 % 2;
-		temp2 = temp2 / 2;
+		array [i] = rem % 2;
+		rem = rem / 2;
 	}
 	
 	for(i = 0; i < 8; i++){

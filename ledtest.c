@@ -23,7 +23,9 @@ int main(int argc , char **argv)
 {
 	unsigned int data = 0;
 	int i;
-	int tem1 = 0, tem2 = 0, tem3 = 0;
+	int temp = 0,temp2 = 0;
+	int array[8] = {0,0,0,0,0,0,0,0,};
+	int count = 0;
 	
 	if (argc < 2 )
 	{
@@ -38,13 +40,27 @@ int main(int argc , char **argv)
 	// open driver
 	ledLibInit();
 	
-	tem1 = data;
+	temp = data;
+	temp2 = data;
+	
+	
+	do {
+		if((temp == 1) ||  (temp == 0))
+		break;
+		temp = temp / 2;
+		count ++;
+	}while(1);
+	
+	for(i = 0; i <= count; i++){
+		array [i] = temp2 % 2;
+		temp2 = temp2 / 2;
+	}
 	
 	for(i = 0; i < 8; i++){
-		if((tem1 % 2) == 1){
-			ledOnOff (i, 1);
-		}
-		tem1 = tem1 / 2; 
+		if(array[i] == 1){
+				ledOnOff (i, 1);
+				sleep(1);
+			}
 	}
 	
 	ledLibExit();

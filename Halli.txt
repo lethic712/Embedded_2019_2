@@ -1,0 +1,54 @@
+설명
+
+main.c가 메인c파일
+메뉴가 2가지 나옴 (홈 화면)
+1. Halli Galli
+2. Calendar
+
+1번을 누르면
+
+--------------------------------------------------
+| 				   											   |
+|				      										   |
+|		 			     ㅁ	                   			   |
+|      ②		         ㅁ                 ①	           |
+|				    										   |
+|				    										   |
+---------------------------------------------------
+ㅁ: 카드 (밑에거 부터 바뀜)
+① : 플레이어1 버튼
+② : 플레이어2 버튼
+
+[Peri]
+button)
+home: 맨처음 메뉴
+Vol up: start=1 로 줌 (시작) stop=0주고
+Vol dn: stop=1 로 주고  (정지) start=0
+menu : score를 rst 시킴 rst=1
+
+text_lcd)
+player1 score가 5점 도달하면 player1 win!  1번줄에 표시
+player2 score가 5점 도달하면 player2 win!  1번줄에 표시
+
+fnd)
+맨왼쪽 에 palyer2점수 뒤집어서
+맨오른쪽에 player1 점수 그대로
+
+color led)
+score가 +1 될때 초록색
+버튼을 눌렀는데 정답이 아니면 빨간불
+평소에 하얀색
+
+buzzer)
+score가 둘중 한명이라도 도달하면 부저울림
+
+led)
+버튼 누를때마다 왼쪽부터 오른쪽으로 쉬프트함
+
+
+
+
+2. calendar 
+
+
+

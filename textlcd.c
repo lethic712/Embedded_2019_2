@@ -59,16 +59,18 @@ typedef struct TextLCD_tag
 int fd;
 stTextLCD  stlcd; 
 int len;
+unsigned int linenum ;
+char *argv[2];
 
 int lcdtextwrite(const char *str1,const char *str2, int lineFlag)
 {
 	if ( lineFlag == 1) // firsst line
 	{
-		str1= CMD_DATA_WRITE_LINE_1;
+		stlcd.cmdData = str1;
 	}
 	else if ( lineFlag == 2) // second line
 	{
-		str1 = CMD_DATA_WRITE_LINE_2;
+		stlcd.cmdData = str2;
 	}
 	
 	else
@@ -76,15 +78,15 @@ int lcdtextwrite(const char *str1,const char *str2, int lineFlag)
 		printf("linenum : %d  wrong .  range (1 ~ 2)\n", lineFlag);
 		return 1; 
 	}
-	printf("string:%s\n",str2);
-	len = strlen(str2);
+	printf("string:%s\n",argv[2]);
+	len = strlen(argv[2]);
 	if ( len > COLUMN_NUM)
 	{
-		memcpy(stlcd.TextData[stlcd.cmdData - 1],str2,COLUMN_NUM);
+		memcpy(stlcd.TextData[stlcd.cmdData - 1],argv[2],COLUMN_NUM);
 	}
 	else
 	{
-		memcpy(stlcd.TextData[stlcd.cmdData - 1],str2,len);
+		memcpy(stlcd.TextData[stlcd.cmdData - 1],argv[2],len);
 	}
 	stlcd.cmd = CMD_WRITE_STRING;
 	

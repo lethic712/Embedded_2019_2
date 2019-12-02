@@ -75,7 +75,7 @@ int main(int argc , char **argv)
 		//perror("driver (//dev//peritextlcd) open error.\n");
 		//return 1;
 	//}
-	lcdtextwrite(stlcd.cmdData ,argv[2],linenum);
+	lcdtextwrite(CMD_DATA_WRITE_LINE_1,CMD_DATA_WRITE_LINE_2,linenum);
 	
 	return 0;
 }

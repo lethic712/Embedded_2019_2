@@ -15,6 +15,7 @@ int state =0;  // 메인화면 state=0 / 정지화면 state=1/ 시작화면 stat
 // color_led에는 맞는카드에 버튼을 누르면 초록색 아니면 빨간색
 // Halli.txt 참조 
 
+
 int main(void)
 {
 int i;

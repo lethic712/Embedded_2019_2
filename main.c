@@ -6,6 +6,11 @@
 #include <fcntl.h> // for O_RDWR
 #include <sys/ioctl.h> // for ioctl
 #include <sys/mman.h>
+#include "fnd.h"
+#include "led.h"
+#include "colorled.h"
+#include "textlcd.h"
+#include "buzzer.h"
 
 
 
@@ -47,6 +52,16 @@ if ( KEY_HOME==1)
 if (state==0)
 {
 	//메인화면
+	if (ev.type == EVENT_TYPE && (ev.code == EVENT_CODE_X || ev.code == EVENT_CODE_Y))
+{
+	if(ev.code == EVENT_CODE_X &&  ? <ev.value < ?)
+	{
+		if(ev.code == EVENT_CODE_Y && ? <ev.value < ?)
+		{
+			state=2;
+		}
+	}
+}
 }
 
 else if (state==1)

@@ -36,7 +36,7 @@ int main(void)
   Mat img;
 	pwmLedInit();
 	ledLibInit();
-	
+	F[1]=0;
 	while (1) {
 		
 		srand(time(NULL));
@@ -97,51 +97,52 @@ int main(void)
 			delay(i);
 
 // 시작시 카드 한장만 띄울 때 
-if(F[0]==A[0])
+if(F[0]==A[0] && F[1]==0)
 {
 img = imread("01.jpg", CV_LOAD_IMAGE_COLOR);
 imshow("HaliGali", img);
 waitKey(0);
 return 0;
 }
-if(F[0]==A[1])
+if(F[0]==A[1] && F[1]==0)
 {
 img = imread("02.jpg", CV_LOAD_IMAGE_COLOR);
 imshow("HaliGali", img);
 waitKey(0);
 return 0;
 }
-if(F[0]==A[2])
+if(F[0]==A[2] && F[1]==0)
 {
 img = imread("03.jpg", CV_LOAD_IMAGE_COLOR);
 imshow("HaliGali", img);
 waitKey(0);
 return 0;
 }
-if(F[0]==A[3])
+if(F[0]==A[3] && F[1]==0)
 {
 img = imread("04.jpg", CV_LOAD_IMAGE_COLOR);
 imshow("HaliGali", img);
 waitKey(0);
 return 0;
 }
-if(F[0]==A[4])
+if(F[0]==A[4] && F[1]==0)
 {
 img = imread("05.jpg", CV_LOAD_IMAGE_COLOR);
 imshow("HaliGali", img);
 waitKey(0);
 return 0;
 }
-if(F[0]==A[5])
+if(F[0]==A[5] && F[1]==0)
 {
 img = imread("06.jpg", CV_LOAD_IMAGE_COLOR);
 imshow("HaliGali", img);
 waitKey(0);
 return 0;
 }
+
+//빨간 카드끼리  
 if(F[0]==A[0] && F[1]==A[0])
 {
-//빨간 카드끼리  
 img = imread("11.jpg", CV_LOAD_IMAGE_COLOR);
 imshow("HaliGali", img);
 waitKey(0);

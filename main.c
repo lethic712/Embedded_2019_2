@@ -7,13 +7,14 @@
 #include <time.h>
 #include <sys/ioctl.h> // for ioctl
 #include <sys/mman.h>
-
+#define INPUT_DEVICE_LIST "/dev/input/event5"
 #include "fnd.h"
 #include "led.h"
 #include "colorled.h"
 #include "textlcd.h"
 #include "buzzer.h"
-#include "button.h"
+
+
 #define MAX_SCALE_STEP 8
 #define EVENT_TYPE      EV_ABS
 #define EVENT_CODE_X    ABS_X
@@ -35,25 +36,39 @@ const int musicScale[MAX_SCALE_STEP] ={262, /*do*/ 294,330,349,392,440,494, /* s
 
 int main(void)
 {
+	struct input_event stEvent;
 	struct input_event ev;
-    int fd;
-	pwmLedInit();
-	ledLibInit();
+	int readSize,inputIndex;
+    int fd,fp;
+
+	
 	fnd1=0;
 	fnd2=0;
 	fnd3=fnd1+fnd2;
 	state=0;
+	
 	int freIndex;
+	
 
 	while (1) {
+	pwmLedInit();
+	ledLibInit();
+		int returnValue = 0 ;
+		fp = open(INPUT_DEVICE_LIST, O_RDONLY);
 		
 		srand(time(NULL));
 		buzzerLibInit(musicScale[freIndex-1]);
 		SIZE = rand() % 6;  			//  0~5 난수 생성 
 		i = (rand() % 2) + 3;  //  3~5초로 딜레이주는 난수함수 써주셈  
 
-
-		if (KEY_BACK == 1 || KEY_VOLUMEDOWN == 1 || KEY_VOLUMEUP == 1 || KEY_HOME == 1)
+readSize = read(fp, &stEvent , sizeof(stEvent));
+if (readSize != sizeof(stEvent))
+{
+continue;
+}
+      if ( stEvent.type == EV_KEY)
+      {
+		if (stEvent.code==KEY_BACK  || stEvent.code==KEY_VOLUMEDOWN || stEvent.code==KEY_VOLUMEUP || stEvent.code== KEY_HOME )
 		{
 			ledOnOff(0, 1);
 			ledOnOff(1, 1);
@@ -62,12 +77,14 @@ int main(void)
 			ledOnOff(4, 1);
 			ledOnOff(5, 1);
 			ledLibExit();
-		}
+		  }
+	   }
 
-		if (KEY_HOME == 1)
+        if (stEvent.code==KEY_HOME )
 		{
 			state = 0;
 		}
+		
 		if (state == 0)
 		{
 			//메인화면
@@ -86,14 +103,14 @@ int main(void)
 		else if (state == 1)
 		{
 			//정지화면
-			if (KEY_BACK == 1)  		//rst은 게임이 멈췄을때만 가능 
+			if (stEvent.code==KEY_BACK )  		//rst은 게임이 멈췄을때만 가능 
 			{
 				score1 = 0;
 				score2 = 0;
 				fnd1 = 0;
 				fnd2 = 0;
 			}
-			else if (KEY_VOLUMEUP == 1)
+			else if (stEvent.code==KEY_VOLUMEUP)
 			{
 				state = 2;
 			}
@@ -167,11 +184,11 @@ int main(void)
 				 buzzerLibOffBuz();
 			}
 		}
-
-		if (KEY_VOLUMEDOWN == 1)    // 정지상태로 만듬 
+		if (stEvent.code==KEY_VOLUMEDOWN )    // 정지상태로 만듬 
 		{
 			state = 1;
 		}
+		close(fp);
 	}
 	
 }

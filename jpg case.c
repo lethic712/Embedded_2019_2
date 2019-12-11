@@ -139,6 +139,265 @@ imshow("HaliGali", img);
 waitKey(0);
 return 0;
 }
+if(F[0]==A[0] && F[1]==A[0])
+{
+//빨간 카드끼리  
+img = imread("11.jpg", CV_LOAD_IMAGE_COLOR);
+imshow("HaliGali", img);
+waitKey(0);
+return 0;
+}
+if(F[0]==A[1] && F[1]==A[0])
+{
+img = imread("12.jpg", CV_LOAD_IMAGE_COLOR);
+imshow("HaliGali", img);
+waitKey(0);
+return 0;
+}
+if(F[0]==A[2] && F[1]==A[0])
+{
+img = imread("13.jpg", CV_LOAD_IMAGE_COLOR);
+imshow("HaliGali", img);
+waitKey(0);
+return 0;
+}
+if(F[0]==A[0] && F[1]==A[1])
+{
+img = imread("21.jpg", CV_LOAD_IMAGE_COLOR);
+imshow("HaliGali", img);
+waitKey(0);
+return 0;
+}
+if(F[0]==A[1] && F[1]==A[1])
+{
+img = imread("22.jpg", CV_LOAD_IMAGE_COLOR);
+imshow("HaliGali", img);
+waitKey(0);
+return 0;
+}
+if(F[0]==A[2] && F[1]==A[1])
+{
+img = imread("23.jpg", CV_LOAD_IMAGE_COLOR);
+imshow("HaliGali", img);
+waitKey(0);
+return 0;
+}
+if(F[0]==A[0] && F[1]==A[2])
+{
+img = imread("31.jpg", CV_LOAD_IMAGE_COLOR);
+imshow("HaliGali", img);
+waitKey(0);
+return 0;
+}
+if(F[0]==A[1] && F[1]==A[2])
+{
+img = imread("32.jpg", CV_LOAD_IMAGE_COLOR);
+imshow("HaliGali", img);
+waitKey(0);
+return 0;
+}
+if(F[0]==A[2] && F[1]==A[2])
+{
+img = imread("33.jpg", CV_LOAD_IMAGE_COLOR);
+imshow("HaliGali", img);
+waitKey(0);
+return 0;
+}
+
+// 위에 노랑 아래 빨강 
+if(F[0]==A[3] && F[1]==A[0])
+{
+img = imread("14.jpg", CV_LOAD_IMAGE_COLOR);
+imshow("HaliGali", img);
+waitKey(0);
+return 0;
+}
+if(F[0]==A[4] && F[1]==A[0])
+{
+img = imread("15.jpg", CV_LOAD_IMAGE_COLOR);
+imshow("HaliGali", img);
+waitKey(0);
+return 0;
+}
+if(F[0]==A[5] && F[1]==A[0])
+{
+img = imread("16.jpg", CV_LOAD_IMAGE_COLOR);
+imshow("HaliGali", img);
+waitKey(0);
+return 0;
+}
+if(F[0]==A[3] && F[1]==A[1])
+{
+img = imread("24.jpg", CV_LOAD_IMAGE_COLOR);
+imshow("HaliGali", img);
+waitKey(0);
+return 0;
+}
+if(F[0]==A[4] && F[1]==A[1])
+{
+img = imread("25.jpg", CV_LOAD_IMAGE_COLOR);
+imshow("HaliGali", img);
+waitKey(0);
+return 0;
+}
+if(F[0]==A[5] && F[1]==A[1])
+{
+img = imread("26.jpg", CV_LOAD_IMAGE_COLOR);
+imshow("HaliGali", img);
+waitKey(0);
+return 0;
+}
+if(F[0]==A[3] && F[1]==A[2])
+{
+img = imread("34.jpg", CV_LOAD_IMAGE_COLOR);
+imshow("HaliGali", img);
+waitKey(0);
+return 0;
+}
+if(F[0]==A[4] && F[1]==A[2])
+{
+img = imread("35.jpg", CV_LOAD_IMAGE_COLOR);
+imshow("HaliGali", img);
+waitKey(0);
+return 0;
+}
+if(F[0]==A[5] && F[1]==A[2])
+{
+img = imread("36.jpg", CV_LOAD_IMAGE_COLOR);
+imshow("HaliGali", img);
+waitKey(0);
+return 0;
+}
+
+// 위에 빨강 아래 노랑 
+if(F[0]==A[0] && F[1]==A[3])
+{
+img = imread("41.jpg", CV_LOAD_IMAGE_COLOR);
+imshow("HaliGali", img);
+waitKey(0);
+return 0;
+}
+if(F[0]==A[1] && F[1]==A[3])
+{
+img = imread("42.jpg", CV_LOAD_IMAGE_COLOR);
+imshow("HaliGali", img);
+waitKey(0);
+return 0;
+}
+if(F[0]==A[2] && F[1]==A[3])
+{
+img = imread("43.jpg", CV_LOAD_IMAGE_COLOR);
+imshow("HaliGali", img);
+waitKey(0);
+return 0;
+}
+if(F[0]==A[0] && F[1]==A[4])
+{
+img = imread("51.jpg", CV_LOAD_IMAGE_COLOR);
+imshow("HaliGali", img);
+waitKey(0);
+return 0;
+}
+if(F[0]==A[1] && F[1]==A[4])
+{
+img = imread("52.jpg", CV_LOAD_IMAGE_COLOR);
+imshow("HaliGali", img);
+waitKey(0);
+return 0;
+}
+if(F[0]==A[2] && F[1]==A[4])
+{
+img = imread("53.jpg", CV_LOAD_IMAGE_COLOR);
+imshow("HaliGali", img);
+waitKey(0);
+return 0;
+}
+if(F[0]==A[0] && F[1]==A[5])
+{
+img = imread("61.jpg", CV_LOAD_IMAGE_COLOR);
+imshow("HaliGali", img);
+waitKey(0);
+return 0;
+}
+if(F[0]==A[1] && F[1]==A[5])
+{
+img = imread("62.jpg", CV_LOAD_IMAGE_COLOR);
+imshow("HaliGali", img);
+waitKey(0);
+return 0;
+}
+if(F[0]==A[2] && F[1]==A[5])
+{
+img = imread("63.jpg", CV_LOAD_IMAGE_COLOR);
+imshow("HaliGali", img);
+waitKey(0);
+return 0;
+}
+
+//노랑 카드끼리 
+if(F[0]==A[3] && F[1]==A[3])
+{
+img = imread("44.jpg", CV_LOAD_IMAGE_COLOR);
+imshow("HaliGali", img);
+waitKey(0);
+return 0;
+}
+if(F[0]==A[4] && F[1]==A[3])
+{
+img = imread("45.jpg", CV_LOAD_IMAGE_COLOR);
+imshow("HaliGali", img);
+waitKey(0);
+return 0;
+}
+if(F[0]==A[5] && F[1]==A[3])
+{
+img = imread("46.jpg", CV_LOAD_IMAGE_COLOR);
+imshow("HaliGali", img);
+waitKey(0);
+return 0;
+}
+if(F[0]==A[3] && F[1]==A[4])
+{
+img = imread("54.jpg", CV_LOAD_IMAGE_COLOR);
+imshow("HaliGali", img);
+waitKey(0);
+return 0;
+}
+if(F[0]==A[4] && F[1]==A[4])
+{
+img = imread("55.jpg", CV_LOAD_IMAGE_COLOR);
+imshow("HaliGali", img);
+waitKey(0);
+return 0;
+}
+if(F[0]==A[5] && F[1]==A[4])
+{
+img = imread("56.jpg", CV_LOAD_IMAGE_COLOR);
+imshow("HaliGali", img);
+waitKey(0);
+return 0;
+}
+if(F[0]==A[3] && F[1]==A[5])
+{
+img = imread("64.jpg", CV_LOAD_IMAGE_COLOR);
+imshow("HaliGali", img);
+waitKey(0);
+return 0;
+}
+if(F[0]==A[4] && F[1]==A[5])
+{
+img = imread("65.jpg", CV_LOAD_IMAGE_COLOR);
+imshow("HaliGali", img);
+waitKey(0);
+return 0;
+}
+if(F[0]==A[5] && F[1]==A[5])
+{
+img = imread("66.jpg", CV_LOAD_IMAGE_COLOR);
+imshow("HaliGali", img);
+waitKey(0);
+return 0;
+}
 
 			F[1] = A[SIZE];
 			delay(i);

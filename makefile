@@ -1,3 +1,3 @@
-final.elf: main.o 1.o 2.o 3.o 4.o
-	gcc -o final.elf main.c 1.c 2.c 3.c 4.c
-	
+all: textlcd.h textlcd.o touch.o led.h led.o fnd.h fnd.o colorled.h colorled.o buzzer.h buzzer.o button.h button.o
+	arm-linux-gnueabi-gcc -c textlcd.c led.c buzzer.c fnd.c colorled.c button.c touch.c
+	arm-linux-gnueabi-ar rc libMyPeri.a textlcd.o led.o colorled.o buzzer.o fnd.o button.o

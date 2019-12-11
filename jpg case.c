@@ -143,7 +143,6 @@ return 0;
 			F[1] = A[SIZE];
 			delay(i);
 
-while((F[0]==A[1] && F[1]==A[1])||(F[0]==A[0] && F[1]==A[2])||(F[0]==A[2] && F[1]==A[0])||(F[0]==A[3] && F[1]==A[5])||(F[0]==A[4] && F[1]==A[4])||(F[0]==A[5] && F[1]==A[3])){
 if(F[0]==A[0] && F[1]==A[0])
 {
 //빨간 카드끼리  
@@ -403,7 +402,7 @@ imshow("HaliGali", img);
 waitKey(0);
 return 0;
 }
-}
+
 
 			if (ev.type == EVENT_TYPE && (ev.code == EVENT_CODE_X || ev.code == EVENT_CODE_Y))
 			{

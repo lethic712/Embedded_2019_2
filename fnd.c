@@ -31,8 +31,6 @@ typedef struct FNDWriteDataForm_tag
 
 #define FND_DRIVER_NAME "/dev/perifnd"
 
-
-
 int fndDisp(int num , int dotflag)
 {
 	int fd;

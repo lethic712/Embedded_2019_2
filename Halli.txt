@@ -1,7 +1,7 @@
 설명
 
 main.c가 메인c파일
-메뉴가 2가지 나옴 (홈 화면)
+메뉴가 2가지 나옴 (홈 화면)   state=0 인상태
 1. Halli Galli
 2. Calendar
 
@@ -15,16 +15,16 @@ main.c가 메인c파일
 |				    										   |
 |				    										   |
 ---------------------------------------------------
-ㅁ: 카드 (밑에거 부터 바뀜)
+ㅁ: 카드 (밑에거 부터 바뀜) F[0] , F[1]
 ① : 플레이어1 버튼
 ② : 플레이어2 버튼
 
 [Peri]
 button)
-home: 맨처음 메뉴
-Vol up: start=1 로 줌 (시작) stop=0주고
-Vol dn: stop=1 로 주고  (정지) start=0
-menu : score를 rst 시킴 rst=1
+home: 맨처음 메뉴   /state=0
+Vol up:  시작 stop=0주고 /state=2
+Vol dn: 정지  start=0  /state=1
+back : score 를 rst 
 
 text_lcd)
 player1 score가 5점 도달하면 player1 win!  1번줄에 표시

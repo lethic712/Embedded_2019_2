@@ -94,6 +94,7 @@ continue;
 		
 		if (state == 0)
 		{
+			img = imread("start.jpg", CV_LOAD_IMAGE_COLOR);
 			imshow("Halli Galli", img);
 			//메인화면
 			if (ev.type == EVENT_TYPE && (ev.code == EVENT_CODE_X || ev.code == EVENT_CODE_Y))

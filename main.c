@@ -6,7 +6,6 @@
 #include <unistd.h> // for open/close
 #include <fcntl.h> // for O_RDWR
 #include <time.h>
-#include <iostream>
 #include <sys/ioctl.h> // for ioctl
 #include <sys/mman.h>
 #define INPUT_DEVICE_LIST "/dev/input/event5"

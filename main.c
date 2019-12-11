@@ -42,7 +42,7 @@ const int musicScale[MAX_SCALE_STEP] ={262, /*do*/ 294,330,349,392,440,494, /* s
 
 int main(void)
 {
-	Mat img = imread("start.jpg",  CV_LOAD_IMAGE_COLOR);
+	Mat img = imread("start.jpg",  CV_LOAD_IMAGE_COLOR); //게임 메인화면 불러들임
 	struct input_event stEvent;
 	struct input_event ev;
 	int readSize,inputIndex;
@@ -87,18 +87,19 @@ continue;
 		  }
 	   }
 
-        if (stEvent.code==KEY_HOME )
+        if (stEvent.code==KEY_HOME ) //홈누를시 시작화면
 		{
 			state = 0;
 		}
 		
 		if (state == 0)
 		{
-			img = imread("start.jpg", CV_LOAD_IMAGE_COLOR);
+			img = imread("start.jpg", CV_LOAD_IMAGE_COLOR); //룰 화면에서 돌아오기위해
 			imshow("Halli Galli", img);
 			//메인화면
 			if (ev.type == EVENT_TYPE && (ev.code == EVENT_CODE_X || ev.code == EVENT_CODE_Y))
 			{
+				//게임시작 부분 터치 판별
 				if (ev.code == EVENT_CODE_X && 300 < ev.value < 510)
 				{
 					if (ev.code == EVENT_CODE_Y && 420< ev.value < 520 )
@@ -106,6 +107,7 @@ continue;
 						state = 2;
 					}
 				}
+				//게임방법 부분 터치 판별
 				if (ev.code == EVENT_CODE_X && 510 < ev.value < 720)
 				{
 					if (ev.code == EVENT_CODE_Y && 420 < ev.value < 520)
@@ -115,10 +117,11 @@ continue;
 				}
 			}
 		}
+		//게임방법 출력
 		else if (state == 3){
 			img = imread("rule.jpg", CV_LOAD_IMAGE_COLOR);
 			imshow("Halli Galli", img);
-			if (stEvent.code == KEY_BACK)  		//rst은 게임이 멈췄을때만 가능 
+			if (stEvent.code == KEY_BACK)  		//BACK 키 누를시 메인화면으로 돌아감
 			{
 				state = 0;
 			}
@@ -135,7 +138,7 @@ continue;
 				fnd1 = 0;
 				fnd2 = 0;
 			}
-			else if (stEvent.code==KEY_VOLUMEUP)
+			else if (stEvent.code==KEY_VOLUMEUP) //볼륨업 누르면 게임 계속 진행
 			{
 				state = 2;
 			}

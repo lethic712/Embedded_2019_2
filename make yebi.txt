@@ -1,0 +1,28 @@
+all: final
+
+final: textlcd.o touch.o led.o fnd.o colorled.o buzzer.o button.o main.o
+	gcc -o final textlcd.o touch.o led.o fnd.o colorled.o buzzer.o button.o main.o `pkg-config opencv --cflags --libs`
+
+textlcd.o: textlcd.c textlcd.h
+	gcc -c textlcd.c
+
+touch.o: touch.c
+	gcc -c touch.c
+
+led.o: led.c led.h
+	gcc -c led.c
+
+fnd.o: fnd.c fnd.h
+	gcc- c fnd.c
+
+colorled.o: colorled.c colorled.h
+	gcc -c colorled.c
+
+buzzer.o: buzzer.c buzzer.h
+	gcc -c buzzer.c
+
+button.o: button.c button.h
+	gcc -c button.c
+
+main.o: main.c
+	gcc -o main.o main.c `pkg-config opencv --cflags --libs`

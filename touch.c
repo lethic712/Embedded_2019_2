@@ -1,67 +1,52 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
 #include <fcntl.h>
+#include <sys/msg.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <pthread.h>
 #include <linux/input.h>
-#include <sys/ioctl.h> // for ioctl
-#include <sys/mman.h>
-#include <string.h>
+#include <unistd.h>
+#include "touch.h"
 
-#define EVENT_DEVICE    "/dev/input/event4"
-#define EVENT_TYPE      EV_ABS
-#define EVENT_CODE_X    ABS_X
-#define EVENT_CODE_Y    ABS_Y
+static pthread_t touchTh_id;
+static int fd = 0;
+static void* touchThFunc(void* arg);
+static int msgID = 0;
 
-/* TODO: Close fd on SIGINT (Ctrl-C), if it's open */
-// 1024 x 600 size
-
-int main(int argc, char *argv[])
+int touchLibInit(void)
 {
-    struct input_event ev;
-    int fd;
-    char name[256] = "Unknown";
+	fd=open (EVENT_DEVICE, O_RDONLY);
+	msgID = msgget((key_t)TOUCH_MESSAGE_ID, IPC_CREAT|0666);
+	pthread_create(&touchTh_id, NULL, &touchThFunc, NULL);
+}
 
-    if ((getuid ()) != 0) {
-        fprintf(stderr, "You are not root! This may not work...\n");
-        return EXIT_SUCCESS;
-    }
+int touchLibExit(void)
+{
+	pthread_cancel(touchTh_id);
+}
 
-    /* Open Device */
-    fd = open(EVENT_DEVICE, O_RDONLY);
-    if (fd == -1) {
-        fprintf(stderr, "%s is not a vaild device\n", EVENT_DEVICE);
-        return EXIT_FAILURE;
-    }
-
-    /* Print Device Name */
-    ioctl(fd, EVIOCGNAME(sizeof(name)), name);
-    printf("Reading from:\n");
-    printf("device file = %s\n", EVENT_DEVICE);
-    printf("device name = %s\n", name);
-
-    for (;;) {
-        const size_t ev_size = sizeof(struct input_event);
-        ssize_t size;
-
-        /* TODO: use select() */
-
-        size = read(fd, &ev, ev_size);
-        if (size < ev_size) {
-            fprintf(stderr, "Error size when reading\n");
-            goto err;
-        }
-
-        if (ev.type == EVENT_TYPE && (ev.code == EVENT_CODE_X || ev.code == EVENT_CODE_Y)) {
-            /* TODO: convert value to pixels */
-            printf("%s = %d\n", ev.code == EVENT_CODE_X ? "X" : "Y", ev.value);
-            
-        }
-      
-    }
-
-    return EXIT_SUCCESS;
-
-err:
-    close(fd);
-    return EXIT_FAILURE;
+static void* touchThFunc(void* arg)
+{
+	TOUCH_MSG_T touchTx;
+	touchTx.messageNum = 1;
+	
+	struct input_event touchEvent;
+	
+	while (1)
+	{
+		read(fd, &touchEvent, sizeof(touchEvent));
+		
+		if (touchEvent.type == EV_ABS && (touchEvent.code == ABS_X || touchEvent.code == ABS_Y)) 
+		{
+			if(touchEvent.code == ABS_X)
+			{  
+				touchTx.touch[0]= touchEvent.value;
+			 }
+			else if (touchEvent.code == ABS_Y)
+			{  
+				touchTx.touch[1]= touchEvent.value;
+			}
+		}
+		
+		msgsnd(msgID, &touchTx, sizeof(touchTx.touch), 0);
+	}
 }

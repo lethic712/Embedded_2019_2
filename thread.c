@@ -50,12 +50,10 @@ int whosend=0;//어떤 thread에서 보냈는지
 
 void* do_timer(){
 
-
 if (msgQueue == -1)
 {
 printf ("msgQueueID Fault\r\n");
 return -1;
-}
    
     whosend=1;
     while(1){
@@ -77,6 +75,10 @@ int main(void)
     int fd,fp;
 structMyMsg messageTxData;
 int msgQueue = msgget((key_t)MY_MESSAGE_ID, IPC_CREAT|0666);
+if (msgQueue == -1)
+{
+printf ("msgQueueID Fault\r\n");
+return -1;
 	
 	fnd1=0;
 	fnd2=0;

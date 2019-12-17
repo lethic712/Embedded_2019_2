@@ -79,7 +79,8 @@ if (msgQueue == -1)
 {
 printf ("msgQueueID Fault\r\n");
 return -1;
-	
+}  
+
 	fnd1=0;
 	fnd2=0;
 	fnd3=fnd1+fnd2;

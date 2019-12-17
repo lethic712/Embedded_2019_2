@@ -101,7 +101,7 @@ continue;
 				//게임시작 부분 터치 판별
 				if (ev.code == EVENT_CODE_X && 300 < ev.value < 510)
 				{
-					if (ev.code == EVENT_CODE_Y && 420< ev.value < 520 )
+					if (ev.code == EVENT_CODE_Y && 460< ev.value < 580 )
 					{
 						state = 2;
 					}
@@ -109,7 +109,7 @@ continue;
 				//게임방법 부분 터치 판별
 				if (ev.code == EVENT_CODE_X && 510 < ev.value < 720)
 				{
-					if (ev.code == EVENT_CODE_Y && 420 < ev.value < 520)
+					if (ev.code == EVENT_CODE_Y && 460 < ev.value < 580)
 					{
 						state = 3;
 					}

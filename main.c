@@ -7,6 +7,7 @@
 #include <time.h>
 #include <sys/ioctl.h> // for ioctl
 #include <sys/mman.h>
+#include <sys/msg.h>
 #include "fnd.h"
 #include "led.h"
 #include "colorled.h"
@@ -16,23 +17,26 @@
 #include "bitmap.h"
 #include "libBitmap.h"
 #include "./jpeg-6b/jpeglib.h"
+#include "touch.h"
 
-int A[6] = { 1,2,3,10,20,30 };;  //  A[0]= 빨강1 A[1]=빨강2 A[2]=빨강3 A[3]=파랑1 A[4]=파랑2 A[5]=파랑3 배열안에값은 무시해도됨
-int F[2]={0,0};  // 카드 위치 밑에가 F[0] 위에가 F[1]
-int fnd1 = 0;
-int fnd2 = 0;
-int fnd3 = 0;
+int A[6] = { 1,2,3,10,20,30 };  //  A[0]= 빨강1 A[1]=빨강2 A[2]=빨강3 A[3]=파랑1 A[4]=파랑2 A[5]=파랑3 배열안에값은 무시해도됨
+int F[2];  // 카드 위치 밑에가 F[0] 위에가 F[1]
+
 int state = 0;  // 메인화면 state=0 / 정지화면 state=1/ 시작화면 state=2  메인함수에 들어가야함
 int i;
 int SIZE;
 int score1=0, score2=0;
 int main(void)
 {
+	int fnd1 = 0;
+    int fnd2 = 0;
+	int fnd3 = 0;
     int CARD=0;
 	pwmLedInit();
+	int j=0;
 	
 	jpegInit();
-	jpegWrite (0);	
+	jpegWrite (98);	
 	lcdtextwrite(0x20," Halli Galli",1);
 	lcdtextwrite(0x20,"",2);
 	
@@ -53,7 +57,7 @@ int main(void)
 		i = (rand() % 2) + 3;  //  3~5초로 딜레이주는 난수함수 써주셈  
 		int fnd3=fnd1+fnd2;
 		int returnTouchValue = 0 ;
-		returnTouchValue = msgrcv(TouchMsgID, &touchRx, sizeof(touchRx.touch), 0 ,IPC_NOWAIT);
+		returnTouchValue = msgrcv(TouchMsgID, &touchRx, sizeof(TOUCH_MSG_T )-sizeof(long int), 0 ,IPC_NOWAIT);
 		int returnButtonValue = 0 ;
 		returnButtonValue = msgrcv(ButtonMsgID, &msgRx, sizeof(int), 0 ,IPC_NOWAIT);
 
@@ -71,10 +75,7 @@ int main(void)
 			ledLibExit();
 		}
 		
-		int returnTouchValue = 0 ;
-		returnTouchValue = msgrcv(TouchMsgID, &touchRx, sizeof(touchRx.touch), 0 ,IPC_NOWAIT);
-		
-		else if ( msgRx.keyInput == KEY_HOME)
+		 if ( msgRx.keyInput == KEY_HOME)
 				{
 					state=0;
 				}
@@ -102,7 +103,7 @@ int main(void)
 			   jpegWrite (99);
 			   if(msgRx.keyInput == KEY_HOME)
 				{
-					state = 0
+					state = 0;
 				}
 		}
 		else if (state==1)
@@ -350,6 +351,7 @@ int main(void)
 			ledOnOff(3, 1);
 			ledOnOff(4, 1);
 			ledLibExit();
+			jpegWrite(88);
 			state=1;
 			
 		}
@@ -366,6 +368,7 @@ int main(void)
 			ledOnOff(3, 1);
 			ledOnOff(4, 1);
 			ledLibExit();
+			jpegWrite(89);
 			state=1;
 			
 		}						
@@ -383,7 +386,7 @@ int main(void)
 		
 	
 }
-
+}
 
 
 

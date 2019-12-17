@@ -73,6 +73,7 @@ int main(void)
 	struct input_event ev;
 	int readSize,inputIndex;
     int fd,fp;
+    int count =0;
 structMyMsg messageTxData;
 int msgQueue = msgget((key_t)MY_MESSAGE_ID, IPC_CREAT|0666);
 if (msgQueue == -1)
@@ -92,7 +93,8 @@ return -1;
 	while (1) {
 	pwmLedInit();
 	ledLibInit();
-		int returnValue = 0 ;
+		int timercnt = 0 ;   
+       
 		fp = open(INPUT_DEVICE_LIST, O_RDONLY);
 		
 		srand(time(NULL));
@@ -187,6 +189,17 @@ continue;
 			F[1] = A[SIZE];
 			sleep(i);
 
+timercnt = msgrcv(msgQueue, &messageRxData, sizeof(messageRxData.piggyBack), 0, IPC_NOWAIT);
+if(whosend ==1){
+if(timercnt >0)
+{
+ count++ //0.1초에 한번씩 30까지  
+}
+}
+if(count ==30)
+{
+count =0; //count 초기화  
+}
 			if (ev.type == EVENT_TYPE && (ev.code == EVENT_CODE_X || ev.code == EVENT_CODE_Y))
 			{
 				if (ev.code == EVENT_CODE_X && 750 < ev.value < 1024)

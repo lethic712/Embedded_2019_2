@@ -54,7 +54,8 @@ if (msgQueue == -1)
 {
 printf ("msgQueueID Fault\r\n");
 return -1;
-   
+  } 
+ 
     whosend=1;
     while(1){
     usleep(100*1000);
